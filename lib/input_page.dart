@@ -15,6 +15,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Genders selectedGender;
   int height = 180;
+  int weight = 60;
+  int age = 25;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,6 @@ class _InputPageState extends State<InputPage> {
           child: Row(children: [
             Expanded(
               child: ReusableCard(
-                onGesture: updated,
                 color: selectedGender == Genders.male
                     ? kActiveCardColor
                     : kCardColor,
@@ -93,22 +94,90 @@ class _InputPageState extends State<InputPage> {
         Expanded(
           child: Row(children: [
             Expanded(
-              child: ReusableCard(color: kCardColor),
+              child: ReusableCard(
+                  cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('WEIGHT', style: kLabelTextStyle),
+                        Text(weight.toString(), style: kNumberStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                print('weight up');
+                                setState(() {
+                                  this.weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(width: 10),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  this.weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ]),
+                  color: kCardColor),
             ),
             Expanded(
-              child: ReusableCard(color: kCardColor),
+              child: ReusableCard(
+                  cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('AGE', style: kLabelTextStyle),
+                        Text(age.toString(), style: kNumberStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  this.age--;
+                                });
+                              },
+                            ),
+                            SizedBox(width: 10),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  this.age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ]),
+                  color: kCardColor),
             ),
           ]),
         ),
       ]),
     );
   }
+}
 
-  updated() {
-    setState(
-      () {
-        selectedGender = Genders.male;
-      },
-    );
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function onPressed;
+  RoundIconButton({@required this.icon, @required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+        child: Icon(icon),
+        fillColor: Color(0xFF4C4F5E),
+        elevation: 10,
+        constraints: BoxConstraints.tightFor(width: 56, height: 56),
+        shape: CircleBorder(),
+        onPressed: onPressed);
   }
 }
