@@ -10,3 +10,5 @@ final TextStyle kLabelTextStyle = TextStyle(
 );
 final TextStyle kNumberStyle =
     TextStyle(fontSize: 50.0, fontWeight: FontWeight.w900);
+final TextStyle klargeButtonText =
+    TextStyle(fontSize: 25, fontWeight: FontWeight.bold);
