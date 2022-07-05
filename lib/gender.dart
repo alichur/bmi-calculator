@@ -12,11 +12,7 @@ class Gender extends StatelessWidget {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Icon(this.faIcon, size: kIconSize),
       SizedBox(height: 15),
-      Text(this.text,
-          style: TextStyle(
-            fontSize: kFontSize,
-            color: Color(0xFF8D8E98),
-          ))
+      Text(this.text, style: kLabelTextStyle)
     ]);
   }
 }
