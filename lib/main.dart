@@ -11,11 +11,7 @@ class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => InputPage(),
-        '/calculate': (context) => ResultsPage()
-      },
+      home: InputPage(),
       theme: themeBuilder.getTheme(),
     );
   }
